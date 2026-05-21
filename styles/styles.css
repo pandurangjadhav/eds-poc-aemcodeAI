@@ -113,6 +113,7 @@ h6 {
 }
 
 h1 { font-size: var(--heading-font-size-xxl); }
+h1 strong { color: #2e7d32; }
 h2 { font-size: var(--heading-font-size-xl); }
 h3 { font-size: var(--heading-font-size-l); }
 h4 { font-size: var(--heading-font-size-m); }
