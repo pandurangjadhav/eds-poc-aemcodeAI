@@ -317,6 +317,18 @@ main > .section:first-of-type {
   }
 }
 
+/* VIBGYOR list colors */
+.columns ul li:nth-child(1) { color: #9400d3; }
+.columns ul li:nth-child(2) { color: #4b0082; }
+.columns ul li:nth-child(3) { color: #00f; }
+.columns ul li:nth-child(4) { color: #0f0; }
+.columns ul li:nth-child(5) { color: #ff0; }
+.columns ul li:nth-child(6) { color: #ff7f00; }
+.columns ul li:nth-child(7) { color: #f00; }
+.columns ul li:nth-child(8) { color: #9400d3; }
+.columns ul li:nth-child(9) { color: #4b0082; }
+.columns ul li:nth-child(10) { color: #00f; }
+
 /* section metadata */
 main .section.light,
 main .section.highlight {
