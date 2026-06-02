@@ -1,20 +1,63 @@
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background: var(--footer-gradient);
+  color: #c4b5fd;
+  font-size: var(--body-font-size-s);
 }
 
 footer .footer > div {
   margin: auto;
   max-width: 1200px;
-  padding: 40px 24px 24px;
+  padding: 60px 24px 24px;
 }
 
 footer .footer p {
-  margin: 0;
+  margin: 0 0 8px;
+}
+
+footer .footer p strong {
+  color: #f472b6;
+  font-size: var(--heading-font-size-xs);
+}
+
+footer .footer a:any-link {
+  color: #c4b5fd;
+}
+
+footer .footer a:hover {
+  color: white;
+}
+
+footer .footer .columns > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid rgb(255 255 255 / 15%);
+}
+
+footer .footer .columns > div > div p strong {
+  color: #fbbf24;
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 12px;
+}
+
+footer .footer > div:last-child {
+  border-top: 1px solid rgb(255 255 255 / 15%);
+  margin-top: 40px;
+  padding-top: 24px;
+  color: #8b8b9e;
+  font-size: var(--body-font-size-xs);
 }
 
 @media (width >= 900px) {
   footer .footer > div {
-    padding: 40px 32px 24px;
+    padding: 60px 32px 24px;
+  }
+
+  footer .footer .columns > div {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

@@ -5,15 +5,34 @@
 
 .hero {
   position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
+  padding: 80px 24px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--background-color);
 }
 
 .hero h1 {
-  max-width: 1200px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  color: var(--background-color);
+  background: var(--heading-gradient);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: var(--heading-font-size-xxl);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.hero p {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #6b7280;
+  font-size: var(--body-font-size-m);
 }
 
 .hero picture {
@@ -32,6 +51,7 @@
 
 @media (width >= 900px) {
   .hero {
-    padding: 40px 32px;
+    padding: 120px 32px;
+    min-height: 500px;
   }
 }

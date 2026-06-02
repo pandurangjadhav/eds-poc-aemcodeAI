@@ -1,6 +1,6 @@
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: var(--background-color);
+  background: var(--nav-gradient);
   width: 100%;
   z-index: 2;
   position: fixed;
@@ -19,15 +19,18 @@ header nav {
   height: var(--nav-height);
   padding: 0 24px;
   font-family: var(--body-font-family);
+  color: white;
 }
 
 header nav[aria-expanded='true'] {
   grid-template:
     'hamburger brand' var(--nav-height)
-    'sections sections' 1fr
+    'sections sections' auto
     'tools tools' var(--nav-height) / auto 1fr;
   overflow-y: auto;
   min-height: 100dvh;
+  background: var(--nav-gradient);
+  align-content: start;
 }
 
 @media (width >= 900px) {
@@ -55,7 +58,7 @@ header nav p {
 }
 
 header nav a:any-link {
-  color: currentcolor;
+  color: white;
 }
 
 /* hamburger */
@@ -72,8 +75,8 @@ header nav .nav-hamburger button {
   border: 0;
   border-radius: 0;
   padding: 0;
-  background-color: var(--background-color);
-  color: inherit;
+  background-color: transparent;
+  color: white;
   overflow: initial;
   text-overflow: initial;
   white-space: initial;
@@ -242,11 +245,28 @@ header nav .nav-sections ul > li > ul > li {
     display: block;
     position: absolute;
     left: -24px;
-    width: 200px;
+    width: 220px;
     top: 150%;
     padding: 16px;
-    background-color: var(--light-color);
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgb(0 0 0 / 10%);
     white-space: initial;
+    color: var(--text-color);
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul a:any-link {
+    color: var(--text-color);
+    display: block;
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: background 0.15s;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul a:hover {
+    background: #f3f4f6;
+    color: var(--link-color);
+    text-decoration: none;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
@@ -258,7 +278,7 @@ header nav .nav-sections ul > li > ul > li {
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
+    border-bottom: 8px solid white;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
