@@ -22,15 +22,17 @@ header nav {
   color: white;
 }
 
-header nav[aria-expanded='true'] {
-  grid-template:
-    'hamburger brand' var(--nav-height)
-    'sections sections' auto
-    'tools tools' var(--nav-height) / auto 1fr;
-  overflow-y: auto;
-  min-height: 100dvh;
-  background: var(--nav-gradient);
-  align-content: start;
+@media (width < 900px) {
+  header nav[aria-expanded='true'] {
+    grid-template:
+      'hamburger brand' var(--nav-height)
+      'sections sections' auto
+      'tools tools' var(--nav-height) / auto 1fr;
+    overflow-y: auto;
+    min-height: 100dvh;
+    background: var(--nav-gradient);
+    align-content: start;
+  }
 }
 
 @media (width >= 900px) {
@@ -170,6 +172,12 @@ header nav[aria-expanded='true'] .nav-sections {
   align-self: start;
 }
 
+@media (width < 900px) {
+  header nav[aria-expanded='true'] .nav-sections ul > li > ul {
+    display: block;
+  }
+}
+
 header nav .nav-sections ul {
   list-style: none;
   padding-left: 0;
@@ -182,6 +190,7 @@ header nav .nav-sections ul > li {
 
 header nav .nav-sections ul > li > ul {
   margin-top: 0;
+  display: none;
 }
 
 header nav .nav-sections ul > li > ul > li {
