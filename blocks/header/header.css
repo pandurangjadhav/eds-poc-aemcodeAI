@@ -28,7 +28,7 @@ header nav {
     grid-template:
       'hamburger brand' var(--nav-height)
       'sections sections' auto
-      'tools tools' var(--nav-height) / auto 1fr;
+      'tools tools' auto / auto 1fr;
     overflow-y: auto;
     min-height: 100dvh;
     background: var(--nav-gradient);
@@ -43,9 +43,8 @@ header nav {
 
   header nav {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 0 32px;
+    gap: 0;
     max-width: 1264px;
     padding: 0 32px;
     height: var(--nav-height);
@@ -207,6 +206,7 @@ header nav .nav-sections ul > li > ul > li {
     display: block;
     visibility: visible;
     white-space: nowrap;
+    text-align: center;
   }
 
   header nav[aria-expanded='true'] .nav-sections {
@@ -215,9 +215,10 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav .nav-sections .default-content-wrapper > ul {
     display: flex;
-    gap: 24px;
+    gap: 32px;
     margin: 0;
     align-items: center;
+    justify-content: center;
   }
 
   header nav .nav-sections .nav-drop {
@@ -301,7 +302,37 @@ header nav .nav-sections ul > li > ul > li {
   }
 }
 
-/* tools */
+/* tools - Get Started button */
 header nav .nav-tools {
   grid-area: tools;
+}
+
+@media (width >= 900px) {
+  header nav .nav-tools {
+    margin-left: auto;
+  }
+
+  header nav .nav-tools p {
+    margin: 0;
+  }
+
+  header nav .nav-tools a {
+    display: inline-block;
+    background: white;
+    color: var(--link-color);
+    border: none;
+    border-radius: 24px;
+    padding: 10px 24px;
+    font-weight: 700;
+    font-size: var(--body-font-size-xs);
+    text-decoration: none;
+    transition: box-shadow 0.2s, transform 0.1s;
+  }
+
+  header nav .nav-tools a:hover {
+    box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
+    transform: scale(1.03);
+    text-decoration: none;
+    color: var(--link-color);
+  }
 }
