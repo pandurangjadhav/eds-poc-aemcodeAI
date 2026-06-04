@@ -4,57 +4,20 @@ header .nav-wrapper {
   width: 100%;
   z-index: 2;
   position: fixed;
+  height: var(--nav-height);
+  overflow: hidden;
 }
 
 header nav {
   box-sizing: border-box;
-  display: grid;
-  grid-template:
-    'hamburger brand tools' var(--nav-height)
-    'sections sections sections' 1fr / auto 1fr auto;
+  display: flex;
   align-items: center;
-  gap: 0 24px;
   margin: auto;
-  max-width: 1248px;
+  max-width: 1264px;
   height: var(--nav-height);
   padding: 0 24px;
   font-family: var(--body-font-family);
   color: white;
-  overflow: hidden;
-}
-
-@media (width < 900px) {
-  header nav[aria-expanded='true'] {
-    grid-template:
-      'hamburger brand' var(--nav-height)
-      'sections sections' auto
-      'tools tools' auto / auto 1fr;
-    overflow-y: auto;
-    min-height: 100dvh;
-    background: var(--nav-gradient);
-    align-content: start;
-  }
-}
-
-@media (width >= 900px) {
-  header .nav-wrapper {
-    position: relative;
-  }
-
-  header nav {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    max-width: 1264px;
-    padding: 0 32px;
-    height: var(--nav-height);
-    overflow: visible;
-  }
-
-  header nav[aria-expanded='true'] {
-    min-height: 0;
-    overflow: visible;
-  }
 }
 
 header nav p {
@@ -68,10 +31,10 @@ header nav a:any-link {
 
 /* hamburger */
 header nav .nav-hamburger {
-  grid-area: hamburger;
   height: 22px;
   display: flex;
   align-items: center;
+  margin-right: 16px;
 }
 
 header nav .nav-hamburger button {
@@ -140,20 +103,12 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   transform: rotate(-45deg);
 }
 
-@media (width >= 900px) {
-  header nav .nav-hamburger {
-    display: none;
-    visibility: hidden;
-  }
-}
-
 /* brand */
 header .nav-brand {
-  grid-area: brand;
-  flex-basis: 128px;
   font-size: var(--heading-font-size-s);
   font-weight: 700;
   line-height: 1;
+  white-space: nowrap;
 }
 
 header nav .nav-brand img {
@@ -161,18 +116,10 @@ header nav .nav-brand img {
   height: auto;
 }
 
-/* sections */
+/* sections - HIDDEN BY DEFAULT */
 header nav .nav-sections {
-  grid-area: sections;
-  flex: 1 1 auto;
   display: none;
   visibility: hidden;
-}
-
-header nav[aria-expanded='true'] .nav-sections {
-  display: block;
-  visibility: visible;
-  align-self: start;
 }
 
 header nav .nav-sections ul {
@@ -182,35 +129,98 @@ header nav .nav-sections ul {
   margin: 0;
 }
 
-header nav .nav-sections ul > li {
-  font-weight: 500;
+/* all sub-menus always hidden by default */
+header nav .nav-sections ul > li > ul {
+  display: none;
 }
 
-header nav .nav-sections ul > li > ul {
-  margin-top: 0;
-  display: none;
+header nav .nav-sections ul > li {
+  font-weight: 500;
 }
 
 header nav .nav-sections ul > li > ul > li {
   font-weight: 400;
 }
 
-@media (width < 900px) {
-  header nav[aria-expanded='true'] .nav-sections ul > li > ul {
-    display: block;
-  }
+/* tools */
+header nav .nav-tools {
+  display: none;
 }
 
-@media (width >= 900px) {
-  header nav .nav-sections {
-    display: block;
-    visibility: visible;
-    white-space: nowrap;
-    text-align: center;
+/* ===================== */
+
+/* MOBILE: expanded menu */
+
+/* ===================== */
+@media (width < 900px) {
+  header .nav-wrapper {
+    overflow: visible;
+  }
+
+  header nav[aria-expanded='true'] {
+    position: fixed;
+    inset: 0;
+    height: 100dvh;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    background: var(--nav-gradient);
+    overflow-y: auto;
+    z-index: 100;
   }
 
   header nav[aria-expanded='true'] .nav-sections {
-    align-self: unset;
+    display: block;
+    visibility: visible;
+    margin-top: 24px;
+  }
+
+  header nav[aria-expanded='true'] .nav-sections ul > li {
+    padding: 8px 0;
+  }
+
+  header nav[aria-expanded='true'] .nav-sections ul > li > ul {
+    display: block;
+    padding-left: 16px;
+  }
+
+  header nav[aria-expanded='true'] .nav-tools {
+    display: block;
+    margin-top: 24px;
+  }
+
+  header nav .nav-hamburger {
+    display: flex;
+  }
+}
+
+/* ===================== */
+
+/* DESKTOP               */
+
+/* ===================== */
+@media (width >= 900px) {
+  header .nav-wrapper {
+    position: relative;
+    overflow: visible;
+  }
+
+  header nav {
+    padding: 0 32px;
+    gap: 0;
+  }
+
+  /* hide hamburger */
+  header nav .nav-hamburger {
+    display: none;
+  }
+
+  /* show nav sections inline */
+  header nav .nav-sections {
+    display: block;
+    visibility: visible;
+    flex: 1;
+    text-align: center;
   }
 
   header nav .nav-sections .default-content-wrapper > ul {
@@ -219,10 +229,17 @@ header nav .nav-sections ul > li > ul > li {
     margin: 0;
     align-items: center;
     justify-content: center;
+    list-style: none;
+    padding: 0;
   }
 
-  header nav .nav-sections .nav-drop {
+  header nav .nav-sections .default-content-wrapper > ul > li {
     position: relative;
+    white-space: nowrap;
+  }
+
+  /* dropdown arrow */
+  header nav .nav-sections .nav-drop {
     padding-right: 16px;
     cursor: pointer;
   }
@@ -247,16 +264,13 @@ header nav .nav-sections ul > li > ul > li {
     transform: rotate(315deg);
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li {
-    flex: 0 1 auto;
-    position: relative;
-  }
-
+  /* sub-menu hidden */
   header nav .nav-sections .default-content-wrapper > ul > li > ul {
     display: none;
-    position: relative;
+    position: absolute;
   }
 
+  /* sub-menu visible on click */
   header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
     display: block;
     position: absolute;
@@ -269,6 +283,7 @@ header nav .nav-sections ul > li > ul > li {
     box-shadow: 0 8px 32px rgb(0 0 0 / 10%);
     white-space: initial;
     color: var(--text-color);
+    list-style: none;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul a:any-link {
@@ -300,15 +315,12 @@ header nav .nav-sections ul > li > ul > li {
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
     padding: 8px 0;
   }
-}
 
-/* tools - Get Started button */
-header nav .nav-tools {
-  grid-area: tools;
-}
+  /* stylelint-disable no-descending-specificity */
 
-@media (width >= 900px) {
+  /* show tools / Get Started button */
   header nav .nav-tools {
+    display: block;
     margin-left: auto;
   }
 
@@ -320,7 +332,6 @@ header nav .nav-tools {
     display: inline-block;
     background: white;
     color: var(--link-color);
-    border: none;
     border-radius: 24px;
     padding: 10px 24px;
     font-weight: 700;
@@ -335,4 +346,6 @@ header nav .nav-tools {
     text-decoration: none;
     color: var(--link-color);
   }
+
+  /* stylelint-enable no-descending-specificity */
 }
