@@ -20,6 +20,7 @@ header nav {
   padding: 0 24px;
   font-family: var(--body-font-family);
   color: white;
+  overflow: hidden;
 }
 
 @media (width < 900px) {
@@ -43,9 +44,12 @@ header nav {
   header nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 0 32px;
     max-width: 1264px;
     padding: 0 32px;
+    height: var(--nav-height);
+    overflow: visible;
   }
 
   header nav[aria-expanded='true'] {
@@ -172,16 +176,11 @@ header nav[aria-expanded='true'] .nav-sections {
   align-self: start;
 }
 
-@media (width < 900px) {
-  header nav[aria-expanded='true'] .nav-sections ul > li > ul {
-    display: block;
-  }
-}
-
 header nav .nav-sections ul {
   list-style: none;
   padding-left: 0;
   font-size: var(--body-font-size-s);
+  margin: 0;
 }
 
 header nav .nav-sections ul > li {
@@ -197,6 +196,12 @@ header nav .nav-sections ul > li > ul > li {
   font-weight: 400;
 }
 
+@media (width < 900px) {
+  header nav[aria-expanded='true'] .nav-sections ul > li > ul {
+    display: block;
+  }
+}
+
 @media (width >= 900px) {
   header nav .nav-sections {
     display: block;
@@ -206,6 +211,13 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav[aria-expanded='true'] .nav-sections {
     align-self: unset;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul {
+    display: flex;
+    gap: 24px;
+    margin: 0;
+    align-items: center;
   }
 
   header nav .nav-sections .nav-drop {
@@ -232,12 +244,6 @@ header nav .nav-sections ul > li > ul > li {
     top: unset;
     bottom: 0.5em;
     transform: rotate(315deg);
-  }
-
-  header nav .nav-sections ul {
-    display: flex;
-    gap: 24px;
-    margin: 0;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li {
