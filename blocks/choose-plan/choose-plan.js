@@ -1,20 +1,20 @@
 /**
- * loads and decorates the pricing block
- * @param {Element} block The pricing block element
+ * loads and decorates the choose-plan block
+ * @param {Element} block The choose-plan block element
  */
 export default function decorate(block) {
   const rows = [...block.children];
 
   const intro = document.createElement('div');
-  intro.className = 'pricing-intro';
+  intro.className = 'choose-plan-intro';
 
   const plans = document.createElement('div');
-  plans.className = 'pricing-plans';
+  plans.className = 'choose-plan-plans';
 
   rows.forEach((row) => {
     const cells = [...row.children];
 
-    // A row with a single cell is the intro column (heading + description)
+    // A row with a single cell is the intro (heading + description)
     if (cells.length <= 1) {
       if (cells[0]) intro.append(...cells[0].childNodes);
       return;
@@ -23,10 +23,10 @@ export default function decorate(block) {
     // Otherwise the row describes a single plan: name, features, cta
     const [name, features, cta] = cells;
     const card = document.createElement('div');
-    card.className = 'pricing-plan';
+    card.className = 'choose-plan-plan';
 
     if (name) {
-      name.className = 'pricing-plan-name';
+      name.className = 'choose-plan-name';
       // promote plain text plan names to a heading for hierarchy/a11y
       if (!name.querySelector('h1,h2,h3,h4,h5,h6')) {
         const heading = document.createElement('h3');
@@ -37,15 +37,15 @@ export default function decorate(block) {
     }
 
     if (features) {
-      features.className = 'pricing-plan-features';
+      features.className = 'choose-plan-features';
       card.append(features);
     }
 
     if (cta) {
-      cta.className = 'pricing-plan-cta';
+      cta.className = 'choose-plan-cta';
       const link = cta.querySelector('a');
       if (link) {
-        link.classList.add('button', 'pricing-plan-button');
+        link.classList.add('button', 'choose-plan-button');
       }
       card.append(cta);
     }

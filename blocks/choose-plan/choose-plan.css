@@ -1,25 +1,20 @@
-.pricing {
-  display: grid;
-  grid-template-columns: 1fr;
+.choose-plan {
+  display: flex;
+  flex-direction: column;
   gap: 24px;
-  align-items: start;
 }
 
-/* intro column */
-.pricing .pricing-intro {
-  padding: 8px 0;
-}
-
-.pricing .pricing-intro h1,
-.pricing .pricing-intro h2,
-.pricing .pricing-intro h3 {
+/* intro */
+.choose-plan .choose-plan-intro h1,
+.choose-plan .choose-plan-intro h2,
+.choose-plan .choose-plan-intro h3 {
   margin: 0 0 16px;
   font-size: var(--heading-font-size-l);
   line-height: 1.15;
   color: var(--text-color);
 }
 
-.pricing .pricing-intro p {
+.choose-plan .choose-plan-intro p {
   margin: 0;
   color: #6b7280;
   font-size: var(--body-font-size-s);
@@ -27,13 +22,13 @@
 }
 
 /* plans grid */
-.pricing .pricing-plans {
+.choose-plan .choose-plan-plans {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
 }
 
-.pricing .pricing-plan {
+.choose-plan .choose-plan-plan {
   display: flex;
   flex-direction: column;
   border-radius: 20px;
@@ -42,19 +37,19 @@
 }
 
 /* colour theming per plan */
-.pricing .pricing-plan:nth-child(1) {
+.choose-plan .choose-plan-plan:nth-child(1) {
   background-color: #e6ebfb;
 }
 
-.pricing .pricing-plan:nth-child(2) {
+.choose-plan .choose-plan-plan:nth-child(2) {
   background-color: #fdf3dd;
 }
 
-.pricing .pricing-plan:nth-child(3) {
+.choose-plan .choose-plan-plan:nth-child(3) {
   background-color: #fce7de;
 }
 
-.pricing .pricing-plan-name h3 {
+.choose-plan .choose-plan-name h3 {
   margin: 0 0 20px;
   font-size: var(--heading-font-size-l);
   font-weight: 400;
@@ -62,41 +57,41 @@
   color: #3b5bdb;
 }
 
-.pricing .pricing-plan:nth-child(2) .pricing-plan-name h3 {
+.choose-plan .choose-plan-plan:nth-child(2) .choose-plan-name h3 {
   color: #f0a500;
 }
 
-.pricing .pricing-plan:nth-child(3) .pricing-plan-name h3 {
+.choose-plan .choose-plan-plan:nth-child(3) .choose-plan-name h3 {
   color: #e8590c;
 }
 
 /* feature lists */
-.pricing .pricing-plan-features {
+.choose-plan .choose-plan-features {
   flex: 1 1 auto;
   color: #4b5563;
   font-size: var(--body-font-size-xs);
   line-height: 1.5;
 }
 
-.pricing .pricing-plan-features p {
+.choose-plan .choose-plan-features p {
   margin: 0 0 8px;
   font-weight: 600;
   color: #6b7280;
 }
 
-.pricing .pricing-plan-features ul {
+.choose-plan .choose-plan-features ul {
   list-style: none;
   margin: 0 0 16px;
   padding: 0;
 }
 
-.pricing .pricing-plan-features li {
+.choose-plan .choose-plan-features li {
   position: relative;
   margin: 0 0 8px;
   padding-left: 22px;
 }
 
-.pricing .pricing-plan-features li::before {
+.choose-plan .choose-plan-features li::before {
   content: "✓";
   position: absolute;
   left: 0;
@@ -106,11 +101,11 @@
 }
 
 /* call to action */
-.pricing .pricing-plan-cta {
+.choose-plan .choose-plan-cta {
   margin-top: 24px;
 }
 
-.pricing a.button.pricing-plan-button {
+.choose-plan a.button.choose-plan-button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -123,13 +118,13 @@
   font-weight: 500;
 }
 
-.pricing a.button.pricing-plan-button::after {
+.choose-plan a.button.choose-plan-button::after {
   content: "→";
   font-weight: 400;
 }
 
-.pricing a.button.pricing-plan-button:hover,
-.pricing a.button.pricing-plan-button:focus-visible {
+.choose-plan a.button.choose-plan-button:hover,
+.choose-plan a.button.choose-plan-button:focus-visible {
   background: var(--text-color);
   color: #fff;
   text-decoration: none;
@@ -137,24 +132,14 @@
 
 /* tablet */
 @media (width >= 600px) {
-  .pricing .pricing-plans {
+  .choose-plan .choose-plan-plans {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 /* desktop */
 @media (width >= 900px) {
-  .pricing {
-    grid-template-columns: minmax(240px, 1fr) 3fr;
-    gap: 40px;
-  }
-
-  .pricing .pricing-intro {
-    position: sticky;
-    top: 40px;
-  }
-
-  .pricing .pricing-plans {
+  .choose-plan .choose-plan-plans {
     grid-template-columns: repeat(3, 1fr);
   }
 }
