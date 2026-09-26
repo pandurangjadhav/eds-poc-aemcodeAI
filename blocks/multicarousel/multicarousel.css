@@ -237,3 +237,117 @@
     font-size: 20px;
   }
 }
+
+/* magazines variant: dark section, centred title, no arrows,
+   cards in a grid on desktop (swipe with dots below 900px) */
+main > .section:has(.multicarousel.magazines) {
+  padding: 48px 0;
+  background-color: #232426;
+}
+
+.multicarousel.magazines {
+  color: #fff;
+}
+
+.multicarousel.magazines .multicarousel-header {
+  justify-content: center;
+}
+
+.multicarousel.magazines .multicarousel-header :is(h1, h2, h3) {
+  color: #fff;
+  text-align: center;
+}
+
+.multicarousel.magazines .multicarousel-nav {
+  display: none;
+}
+
+.multicarousel.magazines .multicarousel-track {
+  grid-auto-columns: 85%;
+}
+
+.multicarousel.magazines .multicarousel-image {
+  aspect-ratio: 328 / 277;
+  border-radius: 8px;
+  background-color: #2f3033;
+}
+
+.multicarousel.magazines .multicarousel-body :is(h2, h3, h4) {
+  margin: 16px 0 8px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.multicarousel.magazines .multicarousel-body p {
+  color: #a8a8a8;
+}
+
+.multicarousel.magazines .multicarousel-download {
+  margin-top: 8px;
+  border-radius: 2.4em;
+  padding: 10px 24px;
+  color: #fff;
+  transition: background-color 0.2s ease;
+}
+
+.multicarousel.magazines .multicarousel-download:hover {
+  background-color: rgb(255 255 255 / 10%);
+  color: #fff;
+  text-decoration: none;
+}
+
+.multicarousel.magazines .multicarousel-dots {
+  display: flex;
+  justify-content: center;
+}
+
+.multicarousel.magazines .multicarousel-dot {
+  background-color: #5a5b5e;
+}
+
+.multicarousel.magazines .multicarousel-dot[aria-current="true"] {
+  background-color: #fff;
+}
+
+@media (width >= 600px) {
+  .multicarousel.magazines .multicarousel-track {
+    grid-auto-columns: 46%;
+  }
+}
+
+@media (width >= 900px) {
+  main > .section:has(.multicarousel.magazines) {
+    padding: 80px 0 100px;
+  }
+
+  .multicarousel.magazines .multicarousel-header {
+    margin-bottom: 40px;
+  }
+
+  .multicarousel.magazines .multicarousel-track {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 31px;
+    overflow: visible;
+  }
+
+  .multicarousel.magazines .multicarousel-dots {
+    display: none;
+  }
+
+  .multicarousel.magazines .multicarousel-body :is(h2, h3, h4) {
+    margin: 20px 0 10px;
+    font-size: 34px;
+  }
+
+  .multicarousel.magazines .multicarousel-body p {
+    font-size: 22px;
+    line-height: 1.6;
+  }
+
+  .multicarousel.magazines .multicarousel-download {
+    margin-top: 16px;
+    font-size: 20px;
+  }
+}
