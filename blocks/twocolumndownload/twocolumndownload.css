@@ -1,4 +1,14 @@
 /* values follow the original AEM two column download component */
+
+/* section heading sits left, in line with the cards, even in a centred hero section */
+main > .section.twocolumndownload-container > .default-content-wrapper {
+  text-align: left;
+}
+
+main > .section.twocolumndownload-container > .default-content-wrapper :is(h1, h2, h3) {
+  font-weight: 400;
+}
+
 .twocolumndownload {
   display: flex;
   flex-direction: column;
