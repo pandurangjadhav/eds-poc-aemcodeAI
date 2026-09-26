@@ -92,19 +92,45 @@ export default function decorate(block) {
   nav.append(prev, next);
   header.append(nav);
 
-  // scroll by one card (card width plus the gap between cards)
-  const scroll = (direction) => {
+  // one card's width plus the gap between cards
+  const step = () => {
     const card = track.querySelector('.multicarousel-card');
     const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-    const step = card ? card.getBoundingClientRect().width + gap : track.clientWidth;
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    track.scrollBy({ left: direction * step, behavior: reduceMotion ? 'auto' : 'smooth' });
+    return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
   };
-  prev.addEventListener('click', () => scroll(-1));
-  next.addEventListener('click', () => scroll(1));
+  const behavior = () => (window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth');
 
-  track.addEventListener('scroll', () => updateArrows(track, prev, next), { passive: true });
-  new ResizeObserver(() => updateArrows(track, prev, next)).observe(track);
+  prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: behavior() }));
+  next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: behavior() }));
 
-  block.replaceChildren(header, track);
+  // pagination dots (shown on mobile instead of the arrows)
+  const cards = [...track.children];
+  const dots = document.createElement('div');
+  dots.className = 'multicarousel-dots';
+  cards.forEach((card, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'multicarousel-dot';
+    dot.setAttribute('aria-label', `Show card ${i + 1} of ${cards.length}`);
+    dot.addEventListener('click', () => track.scrollTo({ left: i * step(), behavior: behavior() }));
+    dots.append(dot);
+  });
+
+  const updateDots = () => {
+    const atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 1;
+    const current = atEnd ? cards.length - 1 : Math.round(track.scrollLeft / step());
+    [...dots.children].forEach((dot, i) => {
+      if (i === current) dot.setAttribute('aria-current', 'true');
+      else dot.removeAttribute('aria-current');
+    });
+  };
+
+  const update = () => {
+    updateArrows(track, prev, next);
+    updateDots();
+  };
+  track.addEventListener('scroll', update, { passive: true });
+  new ResizeObserver(update).observe(track);
+
+  block.replaceChildren(header, track, dots);
 }
