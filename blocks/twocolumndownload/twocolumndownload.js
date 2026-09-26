@@ -1,7 +1,7 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
-// below this width the authored mobile image replaces the desktop image
-const MOBILE_MEDIA = '(max-width: 599px)';
+// below the desktop breakpoint the authored mobile image replaces the desktop image
+const MOBILE_MEDIA = '(max-width: 991px)';
 
 /**
  * builds the card picture, adding the mobile image as an art-directed
@@ -12,7 +12,7 @@ const MOBILE_MEDIA = '(max-width: 599px)';
  */
 function buildPicture(desktopImg, mobileImg) {
   const picture = createOptimizedPicture(desktopImg.src, desktopImg.alt, false, [
-    { media: '(min-width: 900px)', width: '1320' },
+    { media: '(min-width: 992px)', width: '1320' },
     { width: '900' },
   ]);
 

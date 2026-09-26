@@ -1,15 +1,19 @@
+/* values follow the original AEM two column download component */
 .twocolumndownload {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 25px;
 }
 
 .twocolumndownload .twocolumndownload-card {
   position: relative;
   display: block;
-  border-radius: 16px;
+  width: 100%;
+  min-width: 0;
+  height: 222px;
+  border-radius: 12px;
   overflow: hidden;
-  color: var(--text-color);
+  color: #000;
   text-decoration: none;
 }
 
@@ -23,10 +27,17 @@
   outline-offset: 4px;
 }
 
-.twocolumndownload .twocolumndownload-image {
-  aspect-ratio: 656 / 444;
+.twocolumndownload .twocolumndownload-image,
+.twocolumndownload .twocolumndownload-hover-image {
+  position: absolute;
+  inset: 0;
   line-height: 0;
-  background-color: var(--light-color);
+}
+
+/* placeholder colour while the image loads */
+.twocolumndownload .twocolumndownload-image {
+  background-color: #f1f1fa;
+  transition: opacity 0.35s ease-in-out;
 }
 
 .twocolumndownload .twocolumndownload-image img,
@@ -34,29 +45,31 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left center;
+  object-position: left top;
 }
 
 /* the hover image is only used on desktop */
 .twocolumndownload .twocolumndownload-hover-image {
   display: none;
+  opacity: 0;
+  transition: opacity 0.35s ease-in-out;
 }
 
-/* download pdf button, placed on the image (bottom right on mobile) */
+/* download pdf button, bottom left of the image on mobile */
 .twocolumndownload .twocolumndownload-button {
   position: absolute;
-  right: 16px;
-  bottom: 16px;
+  bottom: 18px;
+  left: 10px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   border-radius: 2.4em;
   padding: 10px 18px;
-  background-color: #fdb913;
-  color: #1a1a2e;
-  font-size: var(--body-font-size-xs);
-  font-weight: 600;
-  line-height: 1.25;
+  background-color: #fcaf17;
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
   white-space: nowrap;
   transition: background-color 0.2s ease;
 }
@@ -71,64 +84,58 @@
 
 .twocolumndownload .twocolumndownload-card:hover .twocolumndownload-button,
 .twocolumndownload .twocolumndownload-card:focus-visible .twocolumndownload-button {
-  background-color: #f2a900;
+  background-color: #fdbf45;
 }
 
-/* tablet */
-@media (width >= 600px) {
-  .twocolumndownload .twocolumndownload-image {
-    aspect-ratio: 1320 / 814;
+/* desktop: cards side by side, button top right of the image */
+@media (width >= 992px) {
+  /* like the AEM component, span the full page width instead of the 1200px content width */
+  main > .section.twocolumndownload-container > div {
+    max-width: none;
   }
-}
 
-/* desktop: cards side by side, button in the header band of the image */
-@media (width >= 900px) {
   .twocolumndownload {
     flex-direction: row;
-    gap: 48px;
-    aspect-ratio: 2640 / 814;
+    justify-content: space-between;
+    gap: 40px;
   }
 
   .twocolumndownload .twocolumndownload-card {
-    flex: 1 1 0;
-    min-width: 0;
-    container-type: inline-size;
-  }
-
-  .twocolumndownload .twocolumndownload-image,
-  .twocolumndownload .twocolumndownload-hover-image {
-    position: absolute;
-    inset: 0;
-    aspect-ratio: auto;
-    line-height: 0;
+    width: 50%;
+    height: 407px;
+    transition: width 0.35s ease-in-out;
   }
 
   .twocolumndownload .twocolumndownload-hover-image {
     display: block;
-    opacity: 0;
-    transition: opacity 0.4s ease;
   }
 
-  /* scale the button with the card so it keeps clear of the image title */
   .twocolumndownload .twocolumndownload-button {
-    top: 23%;
-    right: 5.7%;
-    bottom: auto;
-    gap: 0.55em;
-    padding: 0.65em 1.3em;
-    font-size: clamp(13px, 2cqi, 18px);
+    inset: 50px 20px auto auto;
+    gap: 10px;
+    padding: 12px 24px;
+    font-size: 16px;
+    line-height: 24px;
   }
 }
 
-/* desktop with a pointer: widen the hovered card and show its hover image */
-@media (width >= 900px) and (hover: hover) {
-  .twocolumndownload .twocolumndownload-card {
-    transition: flex-grow 0.4s ease;
+@media (width >= 1281px) {
+  .twocolumndownload .twocolumndownload-button {
+    top: 100px;
+    right: 40px;
   }
+}
 
+/* desktop with a pointer: widen the hovered card and cross-fade to its hover image */
+@media (width >= 992px) and (hover: hover) {
   .twocolumndownload .twocolumndownload-card:hover,
   .twocolumndownload .twocolumndownload-card:focus-visible {
-    flex-grow: 1.55;
+    width: 75%;
+  }
+
+  .twocolumndownload .twocolumndownload-card:has(.twocolumndownload-hover-image):hover .twocolumndownload-image,
+  .twocolumndownload .twocolumndownload-card:has(.twocolumndownload-hover-image):focus-visible .twocolumndownload-image {
+    opacity: 0;
   }
 
   .twocolumndownload .twocolumndownload-card:hover .twocolumndownload-hover-image,
