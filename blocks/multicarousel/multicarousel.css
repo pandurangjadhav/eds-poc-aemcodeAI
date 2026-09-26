@@ -238,8 +238,8 @@
   }
 }
 
-/* magazines variant: dark section, centred title, no arrows,
-   cards in a grid on desktop (swipe with dots below 900px) */
+/* magazines variant: dark section, centred title, no arrows or dots;
+   cards stack one per row below 900px and sit in a grid on desktop */
 main > .section:has(.multicarousel.magazines) {
   padding: 48px 0;
   background-color: #232426;
@@ -263,7 +263,11 @@ main > .section:has(.multicarousel.magazines) {
 }
 
 .multicarousel.magazines .multicarousel-track {
-  grid-auto-columns: 85%;
+  grid-auto-flow: row;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 40px;
+  overflow: visible;
+  scroll-snap-type: none;
 }
 
 .multicarousel.magazines .multicarousel-image {
@@ -281,6 +285,8 @@ main > .section:has(.multicarousel.magazines) {
 
 .multicarousel.magazines .multicarousel-body p {
   color: #a8a8a8;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .multicarousel.magazines .multicarousel-download {
@@ -298,22 +304,7 @@ main > .section:has(.multicarousel.magazines) {
 }
 
 .multicarousel.magazines .multicarousel-dots {
-  display: flex;
-  justify-content: center;
-}
-
-.multicarousel.magazines .multicarousel-dot {
-  background-color: #5a5b5e;
-}
-
-.multicarousel.magazines .multicarousel-dot[aria-current="true"] {
-  background-color: #fff;
-}
-
-@media (width >= 600px) {
-  .multicarousel.magazines .multicarousel-track {
-    grid-auto-columns: 46%;
-  }
+  display: none;
 }
 
 @media (width >= 900px) {
@@ -326,14 +317,8 @@ main > .section:has(.multicarousel.magazines) {
   }
 
   .multicarousel.magazines .multicarousel-track {
-    grid-auto-flow: row;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 31px;
-    overflow: visible;
-  }
-
-  .multicarousel.magazines .multicarousel-dots {
-    display: none;
   }
 
   .multicarousel.magazines .multicarousel-body :is(h2, h3, h4) {
