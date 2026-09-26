@@ -103,6 +103,7 @@
   .twocolumndownload .twocolumndownload-card {
     width: 50%;
     height: 407px;
+    container-type: inline-size;
     transition: width 0.35s ease-in-out;
   }
 
@@ -123,6 +124,16 @@
   .twocolumndownload .twocolumndownload-button {
     top: 100px;
     right: 40px;
+  }
+}
+
+/* narrow cards (e.g. the card shrunk by its hovered neighbour) would put the
+   button over the image title, so move it to the bottom right over the photo */
+@media (width >= 992px) {
+  @container (width < 630px) {
+    .twocolumndownload .twocolumndownload-button {
+      inset: auto 24px 24px auto;
+    }
   }
 }
 
