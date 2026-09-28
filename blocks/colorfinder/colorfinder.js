@@ -34,23 +34,37 @@ function buildCard(row) {
   const [imageCell, contentCell, optionsCell] = [...row.children];
   const link = contentCell && contentCell.querySelector('a[href]');
   const options = (optionsCell ? optionsCell.textContent : '').toLowerCase();
+  const img = imageCell && imageCell.querySelector('img');
+
+  // no heading or description: the image already contains the text (image-only card)
+  const hasText = contentCell && ([...contentCell.querySelectorAll('h1, h2, h3, h4, h5, h6, p')]
+    .some((el) => !el.querySelector('a[href]') && el.textContent.trim()));
+  const imageOnly = !!img && !hasText;
 
   // the whole card is the link when one is authored
   const card = document.createElement(link ? 'a' : 'div');
   card.className = 'colorfinder-card';
+  if (imageOnly) card.classList.add('image-only');
   if (options.includes('right')) card.classList.add('text-right');
   if (options.includes('gold')) card.classList.add('title-gold');
 
-  const img = imageCell && imageCell.querySelector('img');
   if (img) {
     const image = document.createElement('div');
     image.className = 'colorfinder-image';
-    // decorative background: the card text describes it
-    image.append(createOptimizedPicture(img.src, '', false, [
-      { media: '(min-width: 900px)', width: '1200' },
+    // text cards: decorative background; image-only cards: the alt text describes the card
+    image.append(createOptimizedPicture(img.src, imageOnly ? img.alt : '', false, [
+      { media: '(min-width: 900px)', width: '1400' },
       { width: '750' },
     ]));
     card.append(image);
+  }
+
+  if (imageOnly) {
+    if (link) {
+      card.href = link.href;
+      if (img.alt) card.setAttribute('aria-label', img.alt);
+    }
+    return card;
   }
 
   const content = document.createElement('div');

@@ -80,6 +80,12 @@
   font-weight: 400;
 }
 
+/* image-only card: the image already contains the text, so show all of it */
+.colorfinder .colorfinder-card.image-only {
+  min-height: 0;
+  aspect-ratio: 1332 / 482;
+}
+
 /* round arrow (cards without button text) */
 .colorfinder .colorfinder-arrow {
   position: absolute;
