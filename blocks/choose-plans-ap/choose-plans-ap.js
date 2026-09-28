@@ -15,17 +15,17 @@ function optionName(cells) {
 }
 
 /**
- * loads and decorates the choose-plan block
- * @param {Element} block The choose-plan block element
+ * loads and decorates the choose-plans-ap block
+ * @param {Element} block The choose-plans-ap block element
  */
 export default function decorate(block) {
   const rows = [...block.children];
 
   const intro = document.createElement('div');
-  intro.className = 'choose-plan-intro';
+  intro.className = 'choose-plans-ap-intro';
 
   const plans = document.createElement('div');
-  plans.className = 'choose-plan-plans';
+  plans.className = 'choose-plans-ap-plans';
 
   rows.forEach((row) => {
     const cells = [...row.children];
@@ -36,7 +36,7 @@ export default function decorate(block) {
       const text = cells[1].textContent.trim();
       if (text) {
         const el = document.createElement(option === 'heading' ? 'h2' : 'p');
-        el.className = `choose-plan-${option}`;
+        el.className = `choose-plans-ap-${option}`;
         el.textContent = text;
         intro.append(el);
       }
@@ -52,10 +52,10 @@ export default function decorate(block) {
     // Otherwise the row describes a single plan: name, features, cta
     const [name, features, cta] = cells;
     const card = document.createElement('div');
-    card.className = 'choose-plan-plan';
+    card.className = 'choose-plans-ap-plan';
 
     if (name) {
-      name.className = 'choose-plan-name';
+      name.className = 'choose-plans-ap-name';
       // promote plain text plan names to a heading for hierarchy/a11y
       if (!name.querySelector('h1,h2,h3,h4,h5,h6')) {
         const heading = document.createElement('h3');
@@ -66,15 +66,15 @@ export default function decorate(block) {
     }
 
     if (features) {
-      features.className = 'choose-plan-features';
+      features.className = 'choose-plans-ap-features';
       card.append(features);
     }
 
     if (cta) {
-      cta.className = 'choose-plan-cta';
+      cta.className = 'choose-plans-ap-cta';
       const link = cta.querySelector('a');
       if (link) {
-        link.classList.add('button', 'choose-plan-button');
+        link.classList.add('button', 'choose-plans-ap-button');
       }
       card.append(cta);
     }
@@ -83,7 +83,7 @@ export default function decorate(block) {
   });
 
   // keep the heading above the sub heading whatever order the rows were authored in
-  const heading = intro.querySelector(':scope > .choose-plan-heading');
+  const heading = intro.querySelector(':scope > .choose-plans-ap-heading');
   if (heading) intro.prepend(heading);
 
   block.replaceChildren(...(intro.childNodes.length ? [intro] : []), plans);
