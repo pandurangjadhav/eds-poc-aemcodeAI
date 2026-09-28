@@ -3,6 +3,22 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 // plan colours are picked by plan name, falling back to the plan's position
 const PLAN_KEYS = ['classic', 'gold', 'platinum'];
 
+// labelled option rows: "Heading | text" and "Sub heading | text"
+const OPTIONS = {
+  heading: 'heading',
+  subheading: 'subheading',
+};
+
+/**
+ * @param {Element[]} cells the cells of a row
+ * @returns {string|null} the option a two-cell row sets, if any
+ */
+function optionName(cells) {
+  if (cells.length !== 2) return null;
+  const label = cells[0].textContent.trim().toLowerCase().replace(/[\s:_-]/g, '');
+  return OPTIONS[label] || null;
+}
+
 /**
  * @param {string} name the plan name
  * @param {number} index position of the plan
@@ -56,6 +72,19 @@ export default function decorate(block) {
   [...block.children].forEach((row) => {
     const cells = [...row.children];
 
+    // "Heading" and "Sub heading" option rows
+    const option = optionName(cells);
+    if (option) {
+      const text = cells[1].textContent.trim();
+      if (text) {
+        const el = document.createElement(option === 'heading' ? 'h2' : 'p');
+        el.className = `choose-plans-variants-${option}`;
+        el.textContent = text;
+        intro.append(el);
+      }
+      return;
+    }
+
     // a row with a single cell is the intro (heading + description)
     if (cells.length <= 1) {
       if (cells[0]) intro.append(...cells[0].childNodes);
@@ -89,6 +118,10 @@ export default function decorate(block) {
 
     plans.append(card);
   });
+
+  // keep the heading above the sub heading whatever order the rows were authored in
+  const heading = intro.querySelector(':scope > .choose-plans-variants-heading');
+  if (heading) intro.prepend(heading);
 
   block.replaceChildren(...(intro.childNodes.length ? [intro] : []), plans);
 }

@@ -1,3 +1,19 @@
+// labelled option rows: "Heading | text" and "Sub heading | text"
+const OPTIONS = {
+  heading: 'heading',
+  subheading: 'subheading',
+};
+
+/**
+ * @param {Element[]} cells the cells of a row
+ * @returns {string|null} the option a two-cell row sets, if any
+ */
+function optionName(cells) {
+  if (cells.length !== 2) return null;
+  const label = cells[0].textContent.trim().toLowerCase().replace(/[\s:_-]/g, '');
+  return OPTIONS[label] || null;
+}
+
 /**
  * loads and decorates the choose-plan block
  * @param {Element} block The choose-plan block element
@@ -13,6 +29,19 @@ export default function decorate(block) {
 
   rows.forEach((row) => {
     const cells = [...row.children];
+
+    // "Heading" and "Sub heading" option rows
+    const option = optionName(cells);
+    if (option) {
+      const text = cells[1].textContent.trim();
+      if (text) {
+        const el = document.createElement(option === 'heading' ? 'h2' : 'p');
+        el.className = `choose-plan-${option}`;
+        el.textContent = text;
+        intro.append(el);
+      }
+      return;
+    }
 
     // A row with a single cell is the intro (heading + description)
     if (cells.length <= 1) {
@@ -53,5 +82,9 @@ export default function decorate(block) {
     plans.append(card);
   });
 
-  block.replaceChildren(intro, plans);
+  // keep the heading above the sub heading whatever order the rows were authored in
+  const heading = intro.querySelector(':scope > .choose-plan-heading');
+  if (heading) intro.prepend(heading);
+
+  block.replaceChildren(...(intro.childNodes.length ? [intro] : []), plans);
 }
