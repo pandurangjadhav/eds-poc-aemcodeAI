@@ -36,12 +36,12 @@ function planKey(name, index) {
  */
 function buildHeader(cell) {
   const header = document.createElement('div');
-  header.className = 'choose-plans-variants-header';
+  header.className = 'choose-plan-header';
 
   const img = cell.querySelector('img');
   if (img) {
     const image = document.createElement('div');
-    image.className = 'choose-plans-variants-header-image';
+    image.className = 'choose-plan-header-image';
     // decorative: the plan name is shown as text on top of it
     image.append(createOptimizedPicture(img.src, '', false, [{ width: '750' }]));
     header.append(image);
@@ -59,15 +59,15 @@ function buildHeader(cell) {
 }
 
 /**
- * loads and decorates the choose-plans-variants block
- * @param {Element} block The choose-plans-variants block element
+ * loads and decorates the choose-plan block
+ * @param {Element} block The choose-plan block element
  */
 export default function decorate(block) {
   const intro = document.createElement('div');
-  intro.className = 'choose-plans-variants-intro';
+  intro.className = 'choose-plan-intro';
 
   const plans = document.createElement('div');
-  plans.className = 'choose-plans-variants-plans';
+  plans.className = 'choose-plan-plans';
 
   [...block.children].forEach((row) => {
     const cells = [...row.children];
@@ -78,7 +78,7 @@ export default function decorate(block) {
       const text = cells[1].textContent.trim();
       if (text) {
         const el = document.createElement(option === 'heading' ? 'h2' : 'p');
-        el.className = `choose-plans-variants-${option}`;
+        el.className = `choose-plan-${option}`;
         el.textContent = text;
         intro.append(el);
       }
@@ -94,25 +94,25 @@ export default function decorate(block) {
     // otherwise the row is a plan: name (+ optional image) | features | optional cta
     const [nameCell, features, cta] = cells;
     const card = document.createElement('div');
-    card.className = 'choose-plans-variants-plan';
+    card.className = 'choose-plan-plan';
 
     const header = buildHeader(nameCell);
     card.classList.add(`plan-${planKey(header.textContent, plans.children.length)}`);
     card.append(header);
 
     if (features) {
-      features.className = 'choose-plans-variants-features';
+      features.className = 'choose-plan-features';
       // lines starting with * are footnotes (e.g. availability notes)
       features.querySelectorAll('li, p').forEach((item) => {
-        if (item.textContent.trim().startsWith('*')) item.classList.add('choose-plans-variants-footnote');
+        if (item.textContent.trim().startsWith('*')) item.classList.add('choose-plan-footnote');
       });
       card.append(features);
     }
 
     const link = cta && cta.querySelector('a[href]');
     if (link) {
-      cta.className = 'choose-plans-variants-cta';
-      link.className = 'button choose-plans-variants-button';
+      cta.className = 'choose-plan-cta';
+      link.className = 'button choose-plan-button';
       card.append(cta);
     }
 
@@ -120,7 +120,7 @@ export default function decorate(block) {
   });
 
   // keep the heading above the sub heading whatever order the rows were authored in
-  const heading = intro.querySelector(':scope > .choose-plans-variants-heading');
+  const heading = intro.querySelector(':scope > .choose-plan-heading');
   if (heading) intro.prepend(heading);
 
   block.replaceChildren(...(intro.childNodes.length ? [intro] : []), plans);

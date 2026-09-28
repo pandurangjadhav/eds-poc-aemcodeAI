@@ -1,32 +1,32 @@
 /* default look: coloured plan cards (same as the choose-plan block) */
-.choose-plans-variants {
+.choose-plan {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.choose-plans-variants .choose-plans-variants-intro :is(h1, h2, h3) {
+.choose-plan .choose-plan-intro :is(h1, h2, h3) {
   margin: 0 0 16px;
   font-size: var(--heading-font-size-l);
   line-height: 1.15;
   color: var(--text-color);
 }
 
-.choose-plans-variants .choose-plans-variants-intro p {
+.choose-plan .choose-plan-intro p {
   margin: 0;
   color: #6b7280;
   font-size: var(--body-font-size-s);
   line-height: 1.6;
 }
 
-.choose-plans-variants .choose-plans-variants-plans {
+.choose-plan .choose-plan-plans {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
 }
 
 /* plan colours, picked by plan name: background, name and tick marks */
-.choose-plans-variants .choose-plans-variants-plan {
+.choose-plan .choose-plan-plan {
   --plan-bg: #e6ebfb;
   --plan-color: #3b5bdb;
   --plan-tick: var(--plan-color);
@@ -39,17 +39,17 @@
   text-align: left;
 }
 
-.choose-plans-variants .choose-plans-variants-plan.plan-gold {
+.choose-plan .choose-plan-plan.plan-gold {
   --plan-bg: #fdf3dd;
   --plan-color: #f0a500;
 }
 
-.choose-plans-variants .choose-plans-variants-plan.plan-platinum {
+.choose-plan .choose-plan-plan.plan-platinum {
   --plan-bg: #fce7de;
   --plan-color: #e8590c;
 }
 
-.choose-plans-variants .choose-plans-variants-header :is(h1, h2, h3, h4) {
+.choose-plan .choose-plan-header :is(h1, h2, h3, h4) {
   margin: 0 0 20px;
   font-size: var(--heading-font-size-l);
   font-weight: 400;
@@ -58,32 +58,32 @@
 }
 
 /* feature lists */
-.choose-plans-variants .choose-plans-variants-features {
+.choose-plan .choose-plan-features {
   flex: 1 1 auto;
   color: #4b5563;
   font-size: var(--body-font-size-xs);
   line-height: 1.5;
 }
 
-.choose-plans-variants .choose-plans-variants-features p {
+.choose-plan .choose-plan-features p {
   margin: 0 0 8px;
   font-weight: 600;
   color: #6b7280;
 }
 
-.choose-plans-variants .choose-plans-variants-features ul {
+.choose-plan .choose-plan-features ul {
   list-style: none;
   margin: 0 0 16px;
   padding: 0;
 }
 
-.choose-plans-variants .choose-plans-variants-features li {
+.choose-plan .choose-plan-features li {
   position: relative;
   margin: 0 0 8px;
   padding-left: 22px;
 }
 
-.choose-plans-variants .choose-plans-variants-features li::before {
+.choose-plan .choose-plan-features li::before {
   content: "✓";
   position: absolute;
   left: 0;
@@ -93,23 +93,23 @@
 }
 
 /* footnotes (lines starting with *): small grey text, no tick */
-.choose-plans-variants .choose-plans-variants-features .choose-plans-variants-footnote {
+.choose-plan .choose-plan-features .choose-plan-footnote {
   padding-left: 0;
   color: #6b7280;
   font-size: 13px;
   font-weight: 400;
 }
 
-.choose-plans-variants .choose-plans-variants-features li.choose-plans-variants-footnote::before {
+.choose-plan .choose-plan-features li.choose-plan-footnote::before {
   content: none;
 }
 
 /* optional call to action */
-.choose-plans-variants .choose-plans-variants-cta {
+.choose-plan .choose-plan-cta {
   margin: 24px 0 0;
 }
 
-.choose-plans-variants a.button.choose-plans-variants-button {
+.choose-plan a.button.choose-plan-button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -122,34 +122,34 @@
   font-weight: 500;
 }
 
-.choose-plans-variants a.button.choose-plans-variants-button::after {
+.choose-plan a.button.choose-plan-button::after {
   content: "→";
   font-weight: 400;
 }
 
-.choose-plans-variants a.button.choose-plans-variants-button:hover,
-.choose-plans-variants a.button.choose-plans-variants-button:focus-visible {
+.choose-plan a.button.choose-plan-button:hover,
+.choose-plan a.button.choose-plan-button:focus-visible {
   background: var(--text-color);
   color: #fff;
   text-decoration: none;
 }
 
 /* icons variant: header image with the plan name, white cards with a shadow */
-.choose-plans-variants.icons .choose-plans-variants-intro {
+.choose-plan.icons .choose-plan-intro {
   text-align: center;
 }
 
-.choose-plans-variants.icons .choose-plans-variants-intro :is(h1, h2, h3) {
+.choose-plan.icons .choose-plan-intro :is(h1, h2, h3) {
   margin-bottom: 8px;
   font-weight: 700;
 }
 
-.choose-plans-variants.icons .choose-plans-variants-plans {
+.choose-plan.icons .choose-plan-plans {
   align-items: start;
   gap: 24px;
 }
 
-.choose-plans-variants.icons .choose-plans-variants-plan {
+.choose-plan.icons .choose-plan-plan {
   --plan-bg: #fcd9c8;
   --plan-tick: #222;
 
@@ -160,17 +160,17 @@
   box-shadow: 0 4px 24px rgb(0 0 0 / 8%);
 }
 
-.choose-plans-variants.icons .choose-plans-variants-plan.plan-gold {
+.choose-plan.icons .choose-plan-plan.plan-gold {
   --plan-bg: #ffecc8;
   --plan-tick: #c8912e;
 }
 
-.choose-plans-variants.icons .choose-plans-variants-plan.plan-platinum {
+.choose-plan.icons .choose-plan-plan.plan-platinum {
   --plan-bg: #ddd6ea;
   --plan-tick: #e0643c;
 }
 
-.choose-plans-variants.icons .choose-plans-variants-header {
+.choose-plan.icons .choose-plan-header {
   position: relative;
   display: flex;
   align-items: flex-end;
@@ -179,24 +179,24 @@
   background-color: var(--plan-bg);
 }
 
-.choose-plans-variants.icons .choose-plans-variants-header.has-image {
+.choose-plan.icons .choose-plan-header.has-image {
   aspect-ratio: 322 / 137;
   min-height: 0;
 }
 
-.choose-plans-variants.icons .choose-plans-variants-header-image {
+.choose-plan.icons .choose-plan-header-image {
   position: absolute;
   inset: 0;
   line-height: 0;
 }
 
-.choose-plans-variants.icons .choose-plans-variants-header-image img {
+.choose-plan.icons .choose-plan-header-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.choose-plans-variants.icons .choose-plans-variants-header :is(h1, h2, h3, h4) {
+.choose-plan.icons .choose-plan-header :is(h1, h2, h3, h4) {
   position: relative;
   margin: 0;
   color: #222;
@@ -204,33 +204,33 @@
   font-weight: 700;
 }
 
-.choose-plans-variants.icons .choose-plans-variants-features {
+.choose-plan.icons .choose-plan-features {
   padding: 24px 24px 20px;
   color: #222;
   font-size: var(--body-font-size-s);
 }
 
-.choose-plans-variants.icons .choose-plans-variants-features p {
+.choose-plan.icons .choose-plan-features p {
   margin: 0 0 8px;
   color: #555;
   font-size: 15px;
 }
 
-.choose-plans-variants.icons .choose-plans-variants-features ul {
+.choose-plan.icons .choose-plan-features ul {
   margin: 0 0 20px;
 }
 
-.choose-plans-variants.icons .choose-plans-variants-features ul:last-child {
+.choose-plan.icons .choose-plan-features ul:last-child {
   margin-bottom: 0;
 }
 
-.choose-plans-variants.icons .choose-plans-variants-features li {
+.choose-plan.icons .choose-plan-features li {
   margin: 0 0 8px;
   padding-left: 24px;
 }
 
 /* thin tick like the AEM component */
-.choose-plans-variants.icons .choose-plans-variants-features li::before {
+.choose-plan.icons .choose-plan-features li::before {
   content: "";
   top: 0.45em;
   width: 12px;
@@ -239,57 +239,57 @@
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5l5 5L20 6.5'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
-.choose-plans-variants.icons .choose-plans-variants-features li.choose-plans-variants-footnote {
+.choose-plan.icons .choose-plan-features li.choose-plan-footnote {
   margin-top: 4px;
   padding-left: 0;
   color: #666;
   font-size: 13px;
 }
 
-.choose-plans-variants.icons .choose-plans-variants-features li.choose-plans-variants-footnote::before {
+.choose-plan.icons .choose-plan-features li.choose-plan-footnote::before {
   content: none;
 }
 
-.choose-plans-variants.icons .choose-plans-variants-cta {
+.choose-plan.icons .choose-plan-cta {
   margin: 0;
   padding: 0 24px 24px;
 }
 
 /* tablet */
 @media (width >= 600px) {
-  .choose-plans-variants .choose-plans-variants-plans {
+  .choose-plan .choose-plan-plans {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 /* desktop */
 @media (width >= 900px) {
-  .choose-plans-variants .choose-plans-variants-plans {
+  .choose-plan .choose-plan-plans {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .choose-plans-variants.icons .choose-plans-variants-intro {
+  .choose-plan.icons .choose-plan-intro {
     margin-bottom: 24px;
   }
 
-  .choose-plans-variants.icons .choose-plans-variants-plans {
+  .choose-plan.icons .choose-plan-plans {
     gap: 48px;
   }
 
-  .choose-plans-variants.icons .choose-plans-variants-header {
+  .choose-plan.icons .choose-plan-header {
     padding: 0 32px 16px;
   }
 
-  .choose-plans-variants.icons .choose-plans-variants-header :is(h1, h2, h3, h4) {
+  .choose-plan.icons .choose-plan-header :is(h1, h2, h3, h4) {
     font-size: 34px;
   }
 
-  .choose-plans-variants.icons .choose-plans-variants-features {
+  .choose-plan.icons .choose-plan-features {
     padding: 28px 32px 24px;
     font-size: 18px;
   }
 
-  .choose-plans-variants.icons .choose-plans-variants-cta {
+  .choose-plan.icons .choose-plan-cta {
     padding: 0 32px 28px;
   }
 }
