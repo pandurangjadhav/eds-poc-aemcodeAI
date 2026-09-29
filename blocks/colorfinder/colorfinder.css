@@ -80,10 +80,19 @@
   font-weight: 400;
 }
 
-/* image-only card: the image already contains the text, so show all of it */
+/* image-only card: the image already contains the text, so show all of it.
+   stretch keeps it as tall as a neighbouring text card (aspect-ratio alone
+   would stop it stretching); any extra height is trimmed from the left so the
+   text and button on the right of the banner stay visible */
 .colorfinder .colorfinder-card.image-only {
+  align-self: stretch;
+  width: 100%;
   min-height: 0;
   aspect-ratio: 1332 / 482;
+}
+
+.colorfinder .colorfinder-card.image-only .colorfinder-image img {
+  object-position: right center;
 }
 
 /* round arrow (cards without button text) */
