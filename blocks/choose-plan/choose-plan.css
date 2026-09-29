@@ -113,6 +113,22 @@
 }
 
 /* default look: values follow the live choosePlanCards component (mobile first) */
+
+/* like the live site the block sets its own side padding (16px, 45px on desktop),
+   so the section and wrapper padding around it are cleared */
+main > .section.choose-plan-container:has(> div > .choose-plan:not(.icons)) {
+  padding-inline: 0;
+}
+
+main > .section.choose-plan-container > div:has(> .choose-plan:not(.icons)) {
+  max-width: none;
+  padding-inline: 0;
+}
+
+.choose-plan:not(.icons) {
+  padding-inline: 16px;
+}
+
 .choose-plan:not(.icons) .choose-plan-intro {
   text-align: left;
 }
@@ -377,17 +393,13 @@
 
 /* desktop: default look, intro on the left and the plans beside it, full page width */
 @media (width >= 992px) {
-  main > .section.choose-plan-container > div:has(> .choose-plan:not(.icons)) {
-    max-width: none;
-  }
-
   .choose-plan:not(.icons) {
     display: grid;
     grid-auto-columns: minmax(0, 1fr);
     grid-auto-flow: column;
     align-items: stretch;
     gap: 32px;
-    padding: 0 13px;
+    padding-inline: 45px;
   }
 
   .choose-plan:not(.icons) .choose-plan-plans {
