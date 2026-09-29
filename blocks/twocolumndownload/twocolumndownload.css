@@ -163,4 +163,15 @@ main > .section.twocolumndownload-container > .default-content-wrapper :is(h1, h
   .twocolumndownload .twocolumndownload-card:focus-visible .twocolumndownload-hover-image {
     opacity: 1;
   }
+
+  /* like the AEM component: while one card is hovered, hide the other card's button */
+  .twocolumndownload .twocolumndownload-button {
+    transition: background-color 0.2s ease, opacity 0.35s ease-in-out, visibility 0.35s ease-in-out;
+  }
+
+  .twocolumndownload:has(.twocolumndownload-card:hover) .twocolumndownload-card:not(:hover) .twocolumndownload-button,
+  .twocolumndownload:has(.twocolumndownload-card:focus-visible) .twocolumndownload-card:not(:focus-visible) .twocolumndownload-button {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
