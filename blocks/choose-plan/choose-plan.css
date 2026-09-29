@@ -82,6 +82,10 @@
   padding-top: 24px;
 }
 
+.choose-plan .choose-plan-cta p {
+  margin: 0;
+}
+
 .choose-plan a.button.choose-plan-button {
   display: flex;
   align-items: center;
@@ -146,6 +150,7 @@ main > .section.choose-plan-container > div:has(> .choose-plan:not(.icons)) {
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
+  letter-spacing: 0.5px;
 }
 
 /* mobile: cards overlap slightly like stacked sheets */
@@ -178,7 +183,8 @@ main > .section.choose-plan-container > div:has(> .choose-plan:not(.icons)) {
   color: var(--plan-color);
   font-size: 30px;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 22px;
+  letter-spacing: 0.5px;
 }
 
 .choose-plan:not(.icons) .choose-plan-features {
@@ -192,6 +198,12 @@ main > .section.choose-plan-container > div:has(> .choose-plan:not(.icons)) {
   font-size: 12px;
   font-weight: 400;
   line-height: 16.8px;
+}
+
+/* padding, not margin, so the last item's margin adds to the 16px group gap as on the live site */
+.choose-plan:not(.icons) .choose-plan-features ul {
+  margin: 0;
+  padding-bottom: 16px;
 }
 
 .choose-plan:not(.icons) .choose-plan-features li {
@@ -224,6 +236,11 @@ main > .section.choose-plan-container > div:has(> .choose-plan:not(.icons)) {
   line-height: 15px;
 }
 
+/* a footnote under a list sits close to it and keeps 22px above the button, as on the live site */
+.choose-plan:not(.icons) .choose-plan-features p.choose-plan-footnote {
+  margin: -12px 0 22px;
+}
+
 .choose-plan:not(.icons) .choose-plan-cta {
   padding-top: 0;
 }
@@ -231,6 +248,7 @@ main > .section.choose-plan-container > div:has(> .choose-plan:not(.icons)) {
 .choose-plan:not(.icons) a.button.choose-plan-button {
   padding: 6px 24px;
   font-size: 14px;
+  line-height: 22px;
 }
 
 /* icons variant: header image with the plan name, white cards with a shadow */
@@ -438,7 +456,7 @@ main > .section.choose-plan-container > div:has(> .choose-plan:not(.icons)) {
 
   .choose-plan:not(.icons) .choose-plan-features p {
     color: #8c8e90;
-    line-height: 1.4;
+    line-height: 22px;
   }
 
   .choose-plan:not(.icons) .choose-plan-features li {
