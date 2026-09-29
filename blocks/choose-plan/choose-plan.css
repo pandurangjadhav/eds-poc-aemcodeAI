@@ -3,6 +3,12 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  font-family: Manrope, var(--body-font-family);
+}
+
+/* headings and the button set their own font globally, so pass Manrope on */
+.choose-plan :is(h1, h2, h3, h4, a.button) {
+  font-family: inherit;
 }
 
 .choose-plan .choose-plan-intro :is(h1, h2, h3) {
