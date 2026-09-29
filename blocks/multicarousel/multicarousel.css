@@ -238,24 +238,40 @@
   }
 }
 
-/* magazines variant: dark section, centred title, no arrows or dots;
-   cards stack one per row below 900px and sit in a grid on desktop */
+/* magazines variant: values follow the live shade-tool-magazines component.
+   Dark section, no arrows or dots; cards stack below 992px and sit in a
+   3-column grid on desktop */
 main > .section:has(.multicarousel.magazines) {
-  padding: 48px 0;
+  padding: 20px 16px;
   background-color: #232426;
+}
+
+/* the section sets the side padding, so the wrapper's padding is cleared */
+main > .section:has(.multicarousel.magazines) > div:has(> .multicarousel.magazines) {
+  max-width: none;
+  padding: 0;
 }
 
 .multicarousel.magazines {
   color: #fff;
+  font-family: Manrope, var(--body-font-family);
+}
+
+/* headings and links set their own font globally, so pass Manrope on */
+.multicarousel.magazines :is(h1, h2, h3, h4, a) {
+  font-family: inherit;
 }
 
 .multicarousel.magazines .multicarousel-header {
-  justify-content: center;
+  margin-bottom: 30px;
 }
 
 .multicarousel.magazines .multicarousel-header :is(h1, h2, h3) {
   color: #fff;
-  text-align: center;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 27.32px;
+  text-align: left;
 }
 
 .multicarousel.magazines .multicarousel-nav {
@@ -265,74 +281,101 @@ main > .section:has(.multicarousel.magazines) {
 .multicarousel.magazines .multicarousel-track {
   grid-auto-flow: row;
   grid-template-columns: minmax(0, 1fr);
-  gap: 40px;
+  gap: 30px;
   overflow: visible;
   scroll-snap-type: none;
 }
 
 .multicarousel.magazines .multicarousel-image {
   aspect-ratio: 328 / 277;
-  border-radius: 8px;
+  border-radius: 0;
   background-color: #2f3033;
 }
 
 .multicarousel.magazines .multicarousel-body :is(h2, h3, h4) {
-  margin: 16px 0 8px;
+  margin: 13px 0 7px;
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
+  line-height: 28.8px;
 }
 
 .multicarousel.magazines .multicarousel-body p {
-  color: #a8a8a8;
+  margin: 0 0 14px;
+  color: #8c8e90;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 24px;
+  letter-spacing: 0.5px;
 }
 
+.multicarousel.magazines .multicarousel-body p.multicarousel-cta {
+  margin: auto 0 0;
+  letter-spacing: normal;
+}
+
+/* pill button: white text on the dark background, cream with black text on hover */
 .multicarousel.magazines .multicarousel-download {
-  margin-top: 8px;
-  border-radius: 2.4em;
-  padding: 10px 24px;
+  box-sizing: border-box;
+  height: 38px;
+  border-radius: 45px;
+  padding: 14px 20px;
   color: #fff;
-  transition: background-color 0.2s ease;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
 }
 
-.multicarousel.magazines .multicarousel-download:hover {
-  background-color: rgb(255 255 255 / 10%);
-  color: #fff;
+.multicarousel.magazines .multicarousel-download::after {
+  width: 18px;
+  height: 18px;
+}
+
+.multicarousel.magazines .multicarousel-download:hover,
+.multicarousel.magazines .multicarousel-download:focus-visible {
+  background-color: #f7f2e7;
+  color: #000;
   text-decoration: none;
+}
+
+.multicarousel.magazines .multicarousel-download:focus-visible {
+  outline: 1px solid #fff;
 }
 
 .multicarousel.magazines .multicarousel-dots {
   display: none;
 }
 
-@media (width >= 900px) {
+@media (width >= 992px) {
   main > .section:has(.multicarousel.magazines) {
-    padding: 80px 0 100px;
+    padding: 60px 40px;
   }
 
   .multicarousel.magazines .multicarousel-header {
-    margin-bottom: 40px;
+    justify-content: center;
+  }
+
+  .multicarousel.magazines .multicarousel-header :is(h1, h2, h3) {
+    font-size: 32px;
+    line-height: 41.6px;
+    text-align: center;
   }
 
   .multicarousel.magazines .multicarousel-track {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 31px;
+    gap: 24px;
   }
 
   .multicarousel.magazines .multicarousel-body :is(h2, h3, h4) {
-    margin: 20px 0 10px;
-    font-size: 34px;
+    font-size: 28px;
+    line-height: 36.4px;
   }
 
   .multicarousel.magazines .multicarousel-body p {
-    font-size: 22px;
-    line-height: 1.6;
+    font-size: 18px;
+    line-height: 28.8px;
   }
 
   .multicarousel.magazines .multicarousel-download {
-    margin-top: 16px;
-    font-size: 20px;
+    font-size: 16px;
   }
 }
