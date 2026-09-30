@@ -1,7 +1,7 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
-// below this width the art-directed mobile image (when authored) is used
-const MOBILE = '(max-width: 599px)';
+// below this width the art-directed mobile image (when authored) is used, as on the live site
+const MOBILE = '(max-width: 991px)';
 
 /**
  * a cell is an image cell when it holds only an image (no visible text)
@@ -27,8 +27,7 @@ function optimizedSrcset(src, width, format) {
  */
 function buildPicture(desktopImg, mobileImg) {
   const picture = createOptimizedPicture(desktopImg.src, desktopImg.alt, false, [
-    { media: '(min-width: 900px)', width: '500' },
-    { media: '(min-width: 600px)', width: '400' },
+    { media: '(min-width: 992px)', width: '750' },
     { width: '750' },
   ]);
 
