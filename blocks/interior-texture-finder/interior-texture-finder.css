@@ -355,13 +355,10 @@ main > .section.interior-texture-finder-container > div:has(> .interior-texture-
   outline-offset: 3px;
 }
 
-/* pagination dots (mobile) */
+/* pagination dots (mobile result cards; the steps use Previous / Next instead) */
 .interior-texture-finder .itf-dots {
-  position: absolute;
-  top: 347px;
-  right: 16px;
   display: flex;
-  gap: 22px;
+  gap: 4px;
 }
 
 .interior-texture-finder .itf-dot {
@@ -385,9 +382,7 @@ main > .section.interior-texture-finder-container > div:has(> .interior-texture-
 
 /* result cards: dots below the cards, right aligned */
 .interior-texture-finder .itf-card-dots {
-  position: static;
   justify-content: flex-end;
-  gap: 4px;
   margin-top: 20px;
   padding-right: 16px;
 }

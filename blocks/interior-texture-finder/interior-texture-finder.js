@@ -460,7 +460,6 @@ export default async function decorate(block) {
         'div',
         { class: 'itf-options-wrap' },
         list,
-        carousel.dots,
         el('div', { class: 'itf-nav' }, prev, next),
       ),
     );
