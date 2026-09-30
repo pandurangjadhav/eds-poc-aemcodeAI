@@ -224,27 +224,20 @@ main > .section.interior-texture-finder-container > div:has(> .interior-texture-
   min-width: 0;
 }
 
-/* mobile: cards scroll sideways, the card in view is taller */
+/* mobile and tablet: the three cards share one row like the live site (up to 260px each) */
 .interior-texture-finder .itf-options {
   display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 0 15px;
-  overflow-x: auto;
-  scroll-padding-inline: 15px;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-}
-
-.interior-texture-finder .itf-options::-webkit-scrollbar {
-  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 32px;
+  min-height: 291px;
+  padding-left: 15px;
 }
 
 .interior-texture-finder .itf-option {
   position: relative;
-  flex: 0 0 260px;
+  flex: 0 1 260px;
   min-width: 0;
-  scroll-snap-align: start;
 }
 
 /* the radio stays in the page for keyboard and screen readers; the card is its label */
@@ -271,11 +264,6 @@ main > .section.interior-texture-finder-container > div:has(> .interior-texture-
   border-radius: 8px;
   overflow: hidden;
   background-color: rgb(255 255 255 / 10%);
-  transition: height 0.3s ease;
-}
-
-.interior-texture-finder .itf-option.is-current .itf-option-media {
-  height: 330px;
 }
 
 .interior-texture-finder .itf-option-media picture {
@@ -304,7 +292,7 @@ main > .section.interior-texture-finder-container > div:has(> .interior-texture-
   display: block;
   margin-top: 10px;
   color: #fff;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 22px;
 }
@@ -401,7 +389,7 @@ main > .section.interior-texture-finder-container > div:has(> .interior-texture-
   justify-content: flex-end;
   gap: 20px;
   width: 50%;
-  margin: 23px auto 0;
+  margin: 0 auto;
 }
 
 /* ---------- lead form ---------- */
@@ -1159,26 +1147,18 @@ main > .section.interior-texture-finder-container > div:has(> .interior-texture-
   }
 
   .interior-texture-finder .itf-options {
-    align-items: flex-start;
-    justify-content: center;
+    gap: 16px;
+    min-height: 0;
     padding: 0;
-    overflow: visible;
-    scroll-snap-type: none;
   }
 
   .interior-texture-finder .itf-option {
     flex: 0 1 300px;
   }
 
-  .interior-texture-finder .itf-option-media,
-  .interior-texture-finder .itf-option.is-current .itf-option-media {
+  .interior-texture-finder .itf-option-media {
     height: auto;
     aspect-ratio: 3 / 4;
-    transition: none;
-  }
-
-  .interior-texture-finder .itf-option-name {
-    font-size: 20px;
   }
 
   .interior-texture-finder .itf-option-input:checked + .itf-option-card .itf-option-media {

@@ -357,7 +357,6 @@ export default async function decorate(block) {
       if (steps[name]) steps[name].hidden = name !== step;
     });
     block.dataset.step = step;
-    if (questions[step]) questions[step].carousel.reset();
     if (!focus) return;
     const heading = steps[step].querySelector('[tabindex="-1"]');
     if (heading) heading.focus({ preventScroll: true });
@@ -410,7 +409,6 @@ export default async function decorate(block) {
 
     const prev = el('button', { type: 'button', class: 'itf-btn itf-btn-outline itf-prev' }, cfg('previousLabel', 'Previous'));
     const next = el('button', { type: 'button', class: 'itf-btn itf-btn-outline itf-next', disabled: true }, cfg('nextLabel', 'Next'));
-    const carousel = setupCarousel(list, options.map((option) => option.wrapper));
 
     const selectOption = (option) => {
       state[key] = option.value;
@@ -423,7 +421,6 @@ export default async function decorate(block) {
     options.forEach((option) => {
       option.input.addEventListener('change', () => {
         selectOption(option);
-        carousel.show(option.wrapper);
       });
       if (norm(state[key]) === norm(option.value)) {
         option.input.checked = true;
@@ -450,7 +447,7 @@ export default async function decorate(block) {
     });
 
     questions[key] = {
-      options, next, carousel, heading,
+      options, next, heading,
     };
     steps[key] = el(
       'div',
