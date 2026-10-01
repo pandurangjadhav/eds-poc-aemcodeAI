@@ -67,6 +67,10 @@ export default function decorate(block) {
 
     if (features) {
       features.className = 'choose-plans-ap-features';
+      // lines starting with * are footnotes (e.g. "* Applicable product warranty.")
+      features.querySelectorAll('li, p').forEach((item) => {
+        if (item.textContent.trim().startsWith('*')) item.classList.add('choose-plans-ap-footnote');
+      });
       card.append(features);
     }
 
