@@ -10,6 +10,7 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  loadScript,
 } from './aem.js';
 
 /**
@@ -42,6 +43,21 @@ async function loadFonts() {
     // do nothing
   }
 }
+
+/**
+ * Loads Swiper (script + styles) once, on demand, for blocks that need a slider
+ * (same global as the Asian Paints EDS site, e.g. used by city-carousel)
+ * @returns {Promise<Function>} the Swiper constructor
+ */
+window.loadSwiper = function loadSwiper() {
+  if (!window.swiperLoadPromise) {
+    window.swiperLoadPromise = Promise.all([
+      loadCSS(`${window.hlx.codeBasePath}/styles/vendor/swiper.css`),
+      window.Swiper ? Promise.resolve() : loadScript(`${window.hlx.codeBasePath}/scripts/swiper.min.js`),
+    ]).then(() => window.Swiper);
+  }
+  return window.swiperLoadPromise;
+};
 
 /**
  * Builds all synthetic blocks in a container element.
