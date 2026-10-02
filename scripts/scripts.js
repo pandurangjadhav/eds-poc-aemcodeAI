@@ -26,6 +26,8 @@ function buildHeroBlock(main) {
     if (h1.closest('.hero') || picture.closest('.hero')) {
       return; // Don't create a duplicate hero block
     }
+    // pictures inside an authored block (e.g. a banner) belong to that block
+    if (picture.closest('main > div > div[class]')) return;
     const section = document.createElement('div');
     section.append(buildBlock('hero', { elems: [picture, h1] }));
     main.prepend(section);

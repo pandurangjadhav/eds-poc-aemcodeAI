@@ -52,7 +52,7 @@ main > .section > div:has(> .banner-accordian) {
 
 /* same underline image and position as live */
 .banner-accordian .banner-accordian-tab[aria-selected="true"]::before {
-  content: url("./icon-line-mob.svg");
+  content: url("../../icons/icon-line-mob.svg");
   position: absolute;
   top: 11px;
   display: flex;
@@ -209,7 +209,7 @@ main > .section > div:has(> .banner-accordian) {
   height: 17px;
   margin: -4px 0 0 3px;
   background-color: currentcolor;
-  mask: url("./arrow.svg") center / 100% 100% no-repeat;
+  mask: url("../../icons/arrow-right.svg") center / 100% 100% no-repeat;
 }
 
 /* slider dots, 22px under the cards */
@@ -264,7 +264,7 @@ main > .section > div:has(> .banner-accordian) {
   }
 
   .banner-accordian .banner-accordian-tab[aria-selected="true"]::before {
-    content: url("./icon-line-desk.svg");
+    content: url("../../icons/icon-line-desk.svg");
     top: 16px;
     width: 57px;
   }
