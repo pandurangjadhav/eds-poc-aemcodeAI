@@ -379,3 +379,174 @@ main > .section:has(.multicarousel.magazines) > div:has(> .multicarousel.magazin
     font-size: 16px;
   }
 }
+
+/* design-cards variant: values follow the live "Design That Holds A Room Together"
+   multicarousel on the wall coverings page. Whole card is a link, 340px cards,
+   dots below 992px, round arrows top right from 992px */
+main > .section:has(.multicarousel.design-cards) > div:has(> .multicarousel.design-cards) {
+  max-width: none;
+  padding: 0;
+}
+
+.multicarousel.design-cards {
+  padding-bottom: 13px;
+  font-family: Manrope, var(--body-font-family);
+}
+
+.multicarousel.design-cards :is(h1, h2, h3, a) {
+  font-family: inherit;
+}
+
+/* centred heading, arrows on the right */
+.multicarousel.design-cards .multicarousel-header {
+  position: relative;
+  display: block;
+  margin: 0 16px 22px;
+  text-align: center;
+}
+
+.multicarousel.design-cards .multicarousel-header :is(h1, h2, h3) {
+  margin: 0;
+  color: #222;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 27.32px;
+  letter-spacing: 0.5px;
+}
+
+.multicarousel.design-cards .multicarousel-nav {
+  display: none;
+}
+
+.multicarousel.design-cards .multicarousel-track {
+  grid-auto-columns: 340px;
+  gap: 16px;
+  padding: 0 16px;
+  scroll-padding-left: 16px;
+}
+
+.multicarousel.design-cards .multicarousel-card-link {
+  display: block;
+  color: #1d1d1f;
+  text-decoration: none;
+}
+
+.multicarousel.design-cards .multicarousel-card-link:hover {
+  color: #1d1d1f;
+  text-decoration: none;
+}
+
+.multicarousel.design-cards .multicarousel-card-link:focus-visible {
+  outline: 2px solid #1d1d1f;
+  outline-offset: 2px;
+}
+
+.multicarousel.design-cards .multicarousel-image {
+  aspect-ratio: 340 / 284;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+/* title with the arrow 12px after it (16px on desktop) */
+.multicarousel.design-cards .multicarousel-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 16px 0 2px;
+  color: #1d1d1f;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 21.86px;
+}
+
+/* same thin grey arrow as live (16x14 on mobile, 18x14 on desktop) */
+.multicarousel.design-cards .multicarousel-title::after {
+  content: "";
+  flex: none;
+  width: 15px;
+  height: 13px;
+  margin-top: 7px;
+  background: url("../../icons/arrow-line-mob.svg") left top / 16px 14px no-repeat;
+}
+
+/* dots: grey 8px dots, the current one a 19px dark pill */
+.multicarousel.design-cards .multicarousel-dots {
+  display: flex;
+  gap: 0;
+  margin-top: 3px;
+  padding-left: 9px;
+}
+
+.multicarousel.design-cards .multicarousel-dot {
+  border-width: 3px;
+  background-color: #d7d7d7;
+}
+
+.multicarousel.design-cards .multicarousel-dot[aria-current="true"] {
+  width: 19px;
+  background-color: #4d4d4d;
+}
+
+@media (width >= 992px) {
+  .multicarousel.design-cards {
+    padding-bottom: 14px;
+  }
+
+  .multicarousel.design-cards .multicarousel-header {
+    margin: 0 0 37px;
+  }
+
+  .multicarousel.design-cards .multicarousel-header :is(h1, h2, h3) {
+    font-size: 40px;
+    line-height: 55px;
+  }
+
+  /* 44px round arrows, 20px apart, 24px from the right edge */
+  .multicarousel.design-cards .multicarousel-nav {
+    position: absolute;
+    top: calc(100% - 25px);
+    right: 24px;
+    display: flex;
+    gap: 20px;
+  }
+
+  .multicarousel.design-cards .multicarousel-nav button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .multicarousel.design-cards .multicarousel-nav button::before {
+    width: 18px;
+    height: 18px;
+  }
+
+  .multicarousel.design-cards .multicarousel-nav button:disabled {
+    opacity: 0.4;
+  }
+
+  .multicarousel.design-cards .multicarousel-track {
+    gap: 20px;
+    padding: 0 0 0 20px;
+    scroll-padding-left: 20px;
+  }
+
+  .multicarousel.design-cards .multicarousel-title {
+    gap: 16px;
+    margin: 20px 0 7px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 27.32px;
+  }
+
+  .multicarousel.design-cards .multicarousel-title::after {
+    width: 20px;
+    height: 15px;
+    margin-top: 7px;
+    background-image: url("../../icons/arrow-line.svg");
+    background-size: 18px 14px;
+  }
+
+  .multicarousel.design-cards .multicarousel-dots {
+    display: none;
+  }
+}

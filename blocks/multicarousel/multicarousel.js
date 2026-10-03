@@ -60,6 +60,40 @@ function buildCard(row, img) {
 }
 
 /**
+ * design-cards variant: the whole card (image + title with an arrow) is one link
+ * @param {Element} row the block row: Image | CTA Link | CTA Text
+ *   (a single link cell also works; its text is then the title)
+ * @param {HTMLImageElement} img the card image
+ * @returns {HTMLLIElement}
+ */
+function buildLinkCard(row, img) {
+  const card = document.createElement('li');
+  card.className = 'multicarousel-card';
+
+  const cells = [...row.children].filter((cell) => !cell.querySelector('img'));
+  const linkCell = cells.find((cell) => cell.querySelector('a[href]'));
+  const link = linkCell?.querySelector('a[href]');
+  const textCell = cells.find((cell) => cell !== linkCell && cell.textContent.trim());
+  const text = (textCell || link || linkCell)?.textContent.trim() || img.alt;
+
+  const wrap = document.createElement(link ? 'a' : 'div');
+  wrap.className = 'multicarousel-card-link';
+  if (link) wrap.href = link.getAttribute('href');
+
+  const image = document.createElement('div');
+  image.className = 'multicarousel-image';
+  image.append(createOptimizedPicture(img.src, img.alt || text, false, [{ width: '750' }]));
+
+  const title = document.createElement('h3');
+  title.className = 'multicarousel-title';
+  title.textContent = text;
+
+  wrap.append(image, title);
+  card.append(wrap);
+  return card;
+}
+
+/**
  * loads and decorates the multicarousel block
  * @param {Element} block The multicarousel block element
  */
@@ -68,11 +102,14 @@ export default function decorate(block) {
   header.className = 'multicarousel-header';
   const track = document.createElement('ul');
   track.className = 'multicarousel-track';
+  const linkCards = block.classList.contains('design-cards');
 
   [...block.children].forEach((row) => {
     const img = row.querySelector('img');
+    // design-cards: an "Image | CTA Link | CTA Text" label row only guides authors
+    if (linkCards && !img && /^image$/i.test(row.firstElementChild?.textContent.trim())) return;
     if (img) {
-      track.append(buildCard(row, img));
+      track.append(linkCards ? buildLinkCard(row, img) : buildCard(row, img));
     } else if (row.firstElementChild) {
       // a row without an image holds the carousel title
       header.append(...row.firstElementChild.childNodes);
