@@ -1,7 +1,7 @@
 /*
 ** Authoring format **
 
-Block name: Bannerwithslider
+Block name: Banner Video
 
 Two-column rows: label | value. A "Slide" row starts a new slide; with a single
 slide the "Slide" row can be left out.
@@ -107,7 +107,7 @@ function bindVideo(slideEl, slide) {
   if (!desktopSrc || REDUCED_MOTION.matches) return null;
 
   const video = document.createElement('video');
-  video.className = 'bannerwithslider-video';
+  video.className = 'banner-video-video';
   video.muted = true;
   video.loop = true;
   video.playsInline = true;
@@ -133,7 +133,7 @@ function bindVideo(slideEl, slide) {
     setSource();
     MOBILE.addEventListener('change', setSource);
   };
-  const poster = slideEl.querySelector('.bannerwithslider-image img');
+  const poster = slideEl.querySelector('.banner-video-image img');
   if (!poster || poster.complete) start();
   else {
     poster.addEventListener('load', start, { once: true });
@@ -155,36 +155,36 @@ function buildSlide(slide, index) {
   const title = textImg?.alt || '';
 
   const slideEl = document.createElement('div');
-  slideEl.className = 'bannerwithslider-slide';
+  slideEl.className = 'banner-video-slide';
   if (eager) slideEl.classList.add('is-active');
   if (slide['desktop video']) slideEl.classList.add('has-video');
 
   const media = document.createElement(slide.link ? 'a' : 'div');
-  media.className = 'bannerwithslider-link';
+  media.className = 'banner-video-link';
   if (slide.link) {
     media.href = slide.link;
     if (title) media.setAttribute('aria-label', title);
   }
 
   if (slide['desktop image']) {
-    media.append(buildPicture(slide['desktop image'], slide['mobile image'], '', eager, 'bannerwithslider-image'));
+    media.append(buildPicture(slide['desktop image'], slide['mobile image'], '', eager, 'banner-video-image'));
   }
   const video = bindVideo(slideEl, slide);
   if (video) media.append(video);
 
   if (textImg) {
-    media.append(buildPicture(textImg, slide['mobile text image'], title, eager, 'bannerwithslider-text'));
+    media.append(buildPicture(textImg, slide['mobile text image'], title, eager, 'banner-video-text'));
   }
   slideEl.append(media);
 
   if (slide.cta) {
     const cta = document.createElement('div');
-    cta.className = 'bannerwithslider-cta';
+    cta.className = 'banner-video-cta';
     const a = document.createElement('a');
     a.href = slide.cta.href;
     a.textContent = slide.cta.label;
     const arrow = document.createElement('span');
-    arrow.className = 'bannerwithslider-arrow';
+    arrow.className = 'banner-video-arrow';
     arrow.setAttribute('aria-hidden', 'true');
     a.append(arrow);
     a.addEventListener('click', () => {
@@ -211,11 +211,11 @@ function bindSlider(block, slideEls, autoplay) {
   let timer;
 
   const nav = document.createElement('div');
-  nav.className = 'bannerwithslider-nav';
+  nav.className = 'banner-video-nav';
   const arrowButton = (dir, label) => {
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = `bannerwithslider-${dir}`;
+    button.className = `banner-video-${dir}`;
     button.setAttribute('aria-label', label);
     return button;
   };
@@ -224,7 +224,7 @@ function bindSlider(block, slideEls, autoplay) {
   const dots = slideEls.map((el, i) => {
     const dot = document.createElement('button');
     dot.type = 'button';
-    dot.className = 'bannerwithslider-dot';
+    dot.className = 'banner-video-dot';
     dot.setAttribute('aria-label', `Go to slide ${i + 1} of ${slideEls.length}`);
     return dot;
   });
@@ -264,7 +264,7 @@ export default function decorate(block) {
   if (!slides.length) return;
 
   const track = document.createElement('div');
-  track.className = 'bannerwithslider-slides';
+  track.className = 'banner-video-slides';
   const slideEls = slides.map(buildSlide);
   track.append(...slideEls);
   block.replaceChildren(track);
